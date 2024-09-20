@@ -38,6 +38,7 @@ const Login = () => {
   };
 
   const handleLogin = async (e) => {
+    e.preventDefault();
     setLoading(true);
 
     const formData = new FormData(e.target);
