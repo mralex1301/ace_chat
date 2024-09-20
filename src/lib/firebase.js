@@ -13,8 +13,6 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
-console.log("ApiKey: " , process.env.REACT_APP_FIREBASE_API_KEY)
-
 // eslint-disable-next-line no-unused-vars
 const app = initializeApp(firebaseConfig);
 

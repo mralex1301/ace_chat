@@ -15,7 +15,7 @@ import { useState } from "react";
 import { useUserStore } from "../../lib/userStore";
 import { toast } from "react-toastify";
 
-const AddUser = () => {
+const AddUser = ({ setAddMode }) => {
   const [user, setUser] = useState(null);
   const { currentUser } = useUserStore();
 
@@ -23,6 +23,11 @@ const AddUser = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const username = formData.get("username");
+
+    if (username === currentUser.username) {
+      setUser(null);
+      return;
+    }
 
     try {
       const userRef = collection(db, "users");
@@ -96,6 +101,11 @@ const AddUser = () => {
     }
   };
 
+  const handleAddAndClose = async () =>{
+    handleAdd();
+    setAddMode(false);
+  };
+
   return (
     <div className="addUser">
       <form onSubmit={handleSearch}>
@@ -108,7 +118,7 @@ const AddUser = () => {
             <img src={user.avatar || "./avatar.png"} alt="" />
             <span>{user.username}</span>
           </div>
-          <button onClick={handleAdd}>Add User</button>
+          <button onClick={handleAddAndClose}>Add User</button>
         </div>
       )}
     </div>
