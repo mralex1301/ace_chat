@@ -102,7 +102,7 @@ const AddUser = ({ setAddMode }) => {
   };
 
   const handleAddAndClose = async () =>{
-    handleAdd();
+    handleAdd();  
     setAddMode(false);
   };
 
